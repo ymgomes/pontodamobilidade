@@ -33,7 +33,7 @@
                                                         {
                                                             foreach (DomainProduct.Entities.Category subCategoryLevel1 in category.ChildCategories)
                                                             {
-                                                                <div class="sixteen wide mobile eight wide tablet four wide computer column">
+                                                                <div class="sixteen wide mobile eight wide tablet sixteen wide computer column">
                                                                     <div class="ui list relaxed">
                                                                         <a href="@subCategoryLevel1.UrlFriendly" title="@subCategoryLevel1.Name">@subCategoryLevel1.Name</a>
                                                                         @if (subCategoryLevel1.ChildCategories != null && subCategoryLevel1.ChildCategories.Any())

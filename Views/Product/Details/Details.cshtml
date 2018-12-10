@@ -156,10 +156,10 @@
 }
 
 @section breadcrumbs {
-    <div class="ui two column centered grid stackable middle aligned">
+    <div class="ui container ui two column left grid stackable middle aligned box-breadcrumbs-int">
         <div class="container">
             <div class="column">
-                <div class="ui breadcrumb margin top medium">
+                <div class="ui breadcrumb margin top">
                     <a class="section" href=""></a>
 
                     <!--COMEÇO FOREACH CATEGORIAS-->
@@ -178,7 +178,7 @@
             </div>
         </div>
     </div>
-    <div class="ui divider"></div>
+    
 }
 
 <div id="fb-root"></div>
@@ -239,9 +239,6 @@
                 <!-- FIM MARCA MOBILE-->
                 <div class="ui two column grid">
                     <div class="column six wide mobile">
-                        <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
-                    </div>
-                    <div class="column ten wide mobile">
                         <div class="avaliacoes">
                             <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")"></div>
                             @if (Model.ProductRatings != null)
@@ -260,6 +257,10 @@
                                 <span>0 avaliações</span>
                             }
                         </div>
+
+                    </div>
+                    <div class="column ten wide mobile">
+                        <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
                     </div>
                 </div>
             </div>
@@ -289,9 +290,6 @@
                             }
                             <div class="ui two column grid stackable">
                                 <div class="column">
-                                    <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
-                                </div>
-                                <div class="column">
                                     <div class="avaliacoes">
                                         <div class="ui tiny star rating" data-rating="@Model.Rate.Value.ToString().Replace(",", ".")"></div>
                                         @if (Model.ProductRatings != null)
@@ -310,6 +308,9 @@
                                             <span>0 avaliações</span>
                                         }
                                     </div>
+                                </div>
+                                <div class="column">
+                                        <h6 itemprop="productID" class="codProduto">@Model.Code</h6>
                                 </div>
                             </div>
                         </div>
@@ -344,21 +345,8 @@
                                     <div class="column ui attached segment">
                                         <div class="ui grid">
                                             <div class="row stackable two column">
-                                                <div class="column middle aligned padding-top no blocoQtd">
-                                                    <div class="ui qtd action mini input">
-                                                        <button class="ui icon button qtdminus" id="qtdminus-detalhes">
-                                                            <i class="minus icon"></i>
-                                                        </button>
-                                                        <input type="number" min="1" step="1" size="3" value="1"
-                                                               name="quantidade" id="quantidade" class="text center" />
-                                                        <button class="ui grey icon button qtdplus" id="qtdplus-detalhes">
-                                                            <i class="add icon"></i>
-                                                        </button>
-                                                    </div>
-                                                </div>
 
-                                                <!--COMEÇO GRADE-->
-                                                <div class="column padding-bottom no text right blocoPreco" itemprop="offers" id="block-price" itemscope="" itemtype="http://schema.org/Offer">
+                                                <div class="sixteen wide computer sixteen wide tablet sixteen wide mobile column  blocoPreco" itemprop="offers" id="block-price" itemscope="" itemtype="http://schema.org/Offer">
                                                     <div id="variacao-preco">
                                                         @if (Model.IsKit)
                                                         {
@@ -460,10 +448,23 @@
                                                         <p class="text color grey regular parcelamento small">@Model.DescriptionAvailabilityStatus</p>
                                                     }
                                                 </div>
-                                                <!--FIM GRADE-->
 
-                                                <div class="ten wide computer sixteen wide tablet sixteen wide mobile column btnComprar">
-                                                    <a class="@(Model.Stock == 0 || Model.FlagExhausted ? " disabled " : " ") ui animated button detalhes @(Session[" EventList"] !=null ? "btn-add-event-list" :"btn-comprar") @(Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
+                                                <div class="four wide computer four wide tablet four wide mobile column aligned padding-top no blocoQtd">
+                                                    <div class="ui qtd action mini input">
+                                                        <button class="ui icon button qtdminus" id="qtdminus-detalhes">
+                                                            <i class="minus icon"></i>
+                                                        </button>
+                                                        <input type="number" min="1" step="1" size="3" value="1"
+                                                               name="quantidade" id="quantidade" class="text center" />
+                                                        <button class="ui icon button qtdplus" id="qtdplus-detalhes">
+                                                            <i class="add icon"></i>
+                                                        </button>
+                                                    </div>
+                                                </div>
+
+                                                <!--COMEÇO GRADE-->
+                                                <div class="twelve wide computer twelve wide tablet twelve wide mobile column padding-bottom no text left btnComprar" >
+                                                    <a class="@(Model.Stock == 0 || Model.FlagExhausted ? " disabled " : " ") ui animated fluid button detalhes @(Session[" EventList"] !=null ? "btn-add-event-list" :"btn-comprar") @(Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0) ? "disabled action" : "action" )">
 
                                                         @if (Model.FlagExhausted || (Model.HaveSku && SKUPadrao.Stock == 0) || (Model.Stock == 0))
                                                         {
@@ -494,6 +495,9 @@
                                                         </a>
                                                     }
                                                 </div>
+                                                <!--FIM GRADE-->
+
+
                                             </div>
                                         </div>
                                     </div>
@@ -570,16 +574,16 @@
         <!--COMEÇO DESCRIÇÃO-->
         <div class="row">
             <div id="scroll" class="ui top attached secondary pointing stackable menu tabular">
-                <a class="item active" data-tab="informacoes">Informações Básicas</a>
-                <a class="item" data-tab="detalhes">Características do Produto </a>
+                <a class="item active" data-tab="detalhes">Características do Produto </a>
+                <a class="item" data-tab="informacoes">Informações Básicas</a>
                 <a class="item" data-tab="avaliacoes">Avaliações</a>
             </div>
-            <div class="ui bottom attached tab segment basic active " data-tab="informacoes">
+            <div class="ui bottom attached tab segment basic" data-tab="informacoes">
                 @Html.Raw(Model.DescriptionDetailSummary)
             </div>
 
             <!--COMEÇO DETALHES PRODUTO-->
-            <div class="ui bottom attached tab segment basic" data-tab="detalhes" id="detalhes">
+            <div class="ui bottom attached tab segment basic active" data-tab="detalhes" id="detalhes">
                 <div class="ui grid one column">
                     <div class="column">
                         @Html.Raw(@Model.DescriptionDetail)
@@ -618,53 +622,6 @@
             <div class="ui bottom attached tab segment basic" data-tab="avaliacoes" id="avaliacoes">
                 <div class="ui grid">
                     <div class="row two column horizontal divided stackable">
-                        <!-- COMEÇO AVALIAÇÂO-->
-                        <div class="column">
-                            <div class="ui comments fluid" id="lista_avaliacoes">
-                                @if (Model.ProductRatings != null)
-                                {
-                                    int total = Model.ProductRatings.Count > 5 ? 5 : Model.ProductRatings.Count;
-                                    for (int i = 0; i < total; i++)
-                                    {
-                                        <div class="comment">
-                                            <div class="content">
-                                                <a class="author">@Model.ProductRatings[i].Name</a>
-                                                <div class="metadata">
-                                                    <div class="rating">
-                                                        <div class="ui mini star rating" data-rating="@Model.ProductRatings[i].Rate"></div>
-                                                    </div>
-                                                    <div class="date"></div>
-                                                    @if (Model.ProductRatings[i].LeavePublicEmail == true)
-                                                    {
-                                                        <div class="email">@Model.ProductRatings[i].Email</div>
-                                                    }
-                                                    else
-                                                    {
-                                                        <div class="email"></div>
-                                                    }
-                                                    <div class="date">@Model.ProductRatings[i].DateRegister</div>
-                                                    <div class="address">@Model.ProductRatings[i].AddressCity</div>
-                                                </div>
-                                                <div class="text">
-                                                    <h5>@Model.ProductRatings[i].Title</h5>
-                                                    <p>@Model.ProductRatings[i].Comment</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="ui divider"></div>
-                                    }
-
-                                }
-                            </div>
-                            @if (Model.ProductRatings != null && Model.ProductRatings.Count > 5)
-                            {
-                                <div class="ui button teal tiny right icon" id="btn_carregar_avaliacoes">
-                                    <i class="icon refresh"></i>
-                                    Carregar mais avaliações
-                                </div>
-                            }
-                        </div>
-                        <!-- FIM AVALIAÇÂO-->
                         <!-- COMEÇO FOMULÁRIO DE AVALIAÇÂO-->
                         <div class="column">
                             <form class="ui form" id="avaliar">
@@ -742,6 +699,54 @@
                             </form>
                         </div>
                         <!-- FIM FOMULÁRIO DE AVALIAÇÂO-->
+                        <!-- COMEÇO AVALIAÇÂO-->
+                        <div class="column">
+                            <div class="ui comments fluid" id="lista_avaliacoes">
+                                @if (Model.ProductRatings != null)
+                                {
+                                    int total = Model.ProductRatings.Count > 5 ? 5 : Model.ProductRatings.Count;
+                                    for (int i = 0; i < total; i++)
+                                    {
+                                        <div class="comment">
+                                            <div class="content">
+                                                <a class="author">@Model.ProductRatings[i].Name</a>
+                                                <div class="metadata">
+                                                    <div class="rating">
+                                                        <div class="ui mini star rating" data-rating="@Model.ProductRatings[i].Rate"></div>
+                                                    </div>
+                                                    <div class="date"></div>
+                                                    @if (Model.ProductRatings[i].LeavePublicEmail == true)
+                                                    {
+                                                        <div class="email">@Model.ProductRatings[i].Email</div>
+                                                    }
+                                                    else
+                                                    {
+                                                        <div class="email"></div>
+                                                    }
+                                                    <div class="date">@Model.ProductRatings[i].DateRegister</div>
+                                                    <div class="address">@Model.ProductRatings[i].AddressCity</div>
+                                                </div>
+                                                <div class="text">
+                                                    <h5>@Model.ProductRatings[i].Title</h5>
+                                                    <p>@Model.ProductRatings[i].Comment</p>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="ui divider"></div>
+                                    }
+
+                                }
+                            </div>
+                            @if (Model.ProductRatings != null && Model.ProductRatings.Count > 5)
+                            {
+                                <div class="ui button teal tiny right icon" id="btn_carregar_avaliacoes">
+                                    <i class="icon refresh"></i>
+                                    Carregar mais avaliações
+                                </div>
+                            }
+                        </div>
+                        <!-- FIM AVALIAÇÂO-->
+                        
                     </div>
                 </div>
             </div>

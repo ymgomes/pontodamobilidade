@@ -1,5 +1,6 @@
 ﻿@{
-    ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? LojaCorp.Control.Company._Company.NameStore : LojaCorp.Control.Company._Company.Title;
+    //ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? LojaCorp.Control.Company._Company.NameStore : LojaCorp.Control.Company._Company.Title;
+    ViewBag.Title = string.IsNullOrEmpty(LojaCorp.Control.Company._Company.Title) ? "Ponto da Mobilidade | Produtos para Acessibilidade" : LojaCorp.Control.Company._Company.Title;
     Layout = "~/Views/Shared/Base/_Layout.cshtml";
 }
 
@@ -9,6 +10,11 @@
 
 <!-- ~/Views/Shared/Blocks/_InfoBar.cshtml -->
 @Html.Partial("Blocks/_InfoBar")
+
+<div class="ui box-h1">
+<h1>Ponto da Mobilidade é o seu lugar para produtos acessíveis</h1>
+<p style="display:none;">Fornecemos produtos que contribuem para a construção de <b>espaços acessíveis</b>, tornando ambientes inclusivos para <b>pessoas deficientes</b> e <b>idosos</b>.</p>
+</div>
 
 <div class="featuredProducts">
     <!-- ~/Views/Shared/Blocks/Product/_FeaturedProducts.cshtml -->
@@ -21,11 +27,41 @@
 <!-- ~/Views/Shared/Blocks/Group/_Groups.cshtml -->
 @Html.Action("Group", "Group")
 
+@* @Html.Action("Group","Group", new { id = 0031 }) *@
+
+
 <!-- ~/Views/Shared/Blocks/_TopSellers.cshtml -->
-@Html.Action("TopSellers", "Product")
+@* @Html.Action("TopSellers", "Product") *@
+
 
 <!-- ~/Views/Shared/Blocks/Banner/_FooterHalfBanner.cshtml -->
 @Html.Action("FooterHalfBanner", "Banner")
 
 <!-- ~/Views/Shared/Blocks/Brand/_Brands.cshtml -->
-@Html.Action("Brand", "Product")
+@* @Html.Action("Brand", "Product") *@
+
+<div class="ui box-h2">
+
+	<div class="ui one column stackable grid">
+			<h2>Os melhores produtos do mercado estão aqui</h2>
+			<p>Nossos produtos atendem o cumprimento da Lei Federal n. 5296/04 e a NBR 9050.</p>
+	</div>
+	<div class="ui four column stackable grid">
+		<div class="column"><a class="btn-cat btn-cat-acessibilidade" href="/categoria/acessibilidade">Acessibilidade</a></div>
+		<div class="column"><a class="btn-cat btn-cat-ortopedia" href="/categoria/ortopedia">Ortopedia</a></div>
+		<div class="column"><a class="btn-cat btn-cat-reposicao" href="/categoria/pecas-de-reposicao">Peças de Reposição</a></div>
+		<div class="column"><a class="btn-cat btn-cat-plataformas" href="#">Plataformas e Elevadores</a></div>
+	</div>
+
+</div>
+
+<div class="ui container box-noticias">
+    <div class="ui sixteen column stackable grid">
+        <h2>Últimas notícias <small style="float: right;"><a href="#">[+] veja mais notícias</a></small></h2>
+    </div>
+    <div class="ui three column stackable grid">
+        <div class="column">noticia</div>
+        <div class="column">noticia</div>
+        <div class="column">noticia</div>
+    </div>
+</div>
